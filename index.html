@@ -4,82 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bright Dental Cad - Envio de Casos</title>
-  <!-- Fonte moderna -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #f2f1ec;
-      color: #333;
-      line-height: 1.6;
-    }
-    header {
-      background: #004725;
-      color: #fff;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    header p {
-      margin: 10px 0 20px;
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-    nav a {
-      color: #fff;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-    nav a:hover { color: #ffdd57; }
-    section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    section:nth-child(even) { background: #ffffff; }
-    h2 {
-      margin-bottom: 20px;
-      font-size: 2rem;
-      color: #004725;
-    }
-    p { font-size: 1.1rem; margin-bottom: 20px; }
-    iframe {
-      width: 100%;
-      height: 1000px;
-      border: none;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f2f1ec; color: #333; }
+    header { background: #004725; color: #fff; padding: 20px; text-align: center; }
+    nav { margin-top: 10px; }
+    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    section { padding: 40px 20px; text-align: center; max-width: 900px; margin: auto; }
+    h1, h2 { margin-bottom: 20px; }
+    p { margin-bottom: 20px; font-size: 18px; }
+
+    /* Botões padrão */
     .btn {
       display: inline-block;
-      margin: 15px;
-      padding: 14px 28px;
+      margin: 20px;
+      padding: 12px 24px;
       background: #004725;
-      color: #fff;
+      color: #f2f1ec;
       text-decoration: none;
-      border-radius: 10px;
-      font-weight: 600;
-      transition: 0.3s;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      transition: background 0.3s;
     }
-    .btn:hover {
-      background: #007b55;
-      transform: translateY(-2px);
-    }
-    footer {
-      background: #222;
-      color: #ccc;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-    }
-    /* Botão WhatsApp flutuante */
+    .btn:hover { background: #00361c; }
+
+    /* Botão fixo do WhatsApp */
     .whatsapp-float {
       position: fixed;
       width: 60px;
@@ -91,7 +41,7 @@
       border-radius: 50%;
       text-align: center;
       font-size: 30px;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
       z-index: 1000;
       display: flex;
       align-items: center;
@@ -100,12 +50,9 @@
     }
     .whatsapp-float:hover {
       transform: scale(1.1);
-      background-color: #20b954;
     }
-    .whatsapp-float img {
-      width: 35px;
-      height: 35px;
-    }
+
+    footer { background: #222; color: #ccc; text-align: center; padding: 20px; margin-top: 40px; }
   </style>
 </head>
 <body>
@@ -131,9 +78,10 @@
   <!-- Formulário -->
   <section id="formulario">
     <h2>Envie seu caso</h2>
-    <p>Preencha as informações abaixo e envie seus arquivos (.stl, .ply)</p>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdG2OR_22S-3Gg7-M8GATWwsse43At0wcZ7K1lHWTvTOckqVA/viewform?embedded=true"
-      frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+    <p>Clique no botão abaixo para preencher o formulário e enviar seus arquivos (.stl, .ply).</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdG2OR_22S-3Gg7-M8GATWwsse43At0wcZ7K1lHWTvTOckqVA/viewform?usp=sf_link"
+       target="_blank"
+       class="btn">📤 Enviar Caso</a>
   </section>
 
   <!-- Tabela de Preços -->
@@ -141,25 +89,26 @@
     <h2>Tabela de Preços</h2>
     <p>Clique abaixo para acessar nossa tabela completa de valores.</p>
     <a href="https://www.canva.com/design/DAGhb5_NWk8/q1ByCHtjJXHz7YaMazDvjQ/view?utm_content=DAGhb5_NWk8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h01355bc4a1"
-       target="_blank" class="btn">📄 Ver Tabela de Preços</a>
+       target="_blank"
+       class="btn">📄 Ver Tabela de Preços</a>
   </section>
 
   <!-- Contato -->
   <section id="contato">
     <h2>Contato</h2>
     <p>Entre em contato para mais informações:</p>
-    <p>📧 <a href="mailto:b.dentalcad@gmail.com">b.dentalcad@gmail.com</a></p>
-    <p>📱 <a href="https://wa.me/5579998306276" target="_blank">(79) 99830-6276</a></p>
+    <p>📧 b.dentalcad@gmail.com</p>
+    <p>📱 (79) 99830-6276</p>
     <a href="https://www.instagram.com/bright.dentalcad" target="_blank" class="btn">📷 Instagram</a>
   </section>
+
+  <!-- Botão flutuante WhatsApp -->
+  <a href="https://wa.me/5579998306276" target="_blank" class="whatsapp-float">
+    💬
+  </a>
 
   <footer>
     <p>© 2025 Bright Dental Cad - Todos os direitos reservados.</p>
   </footer>
-
-  <!-- Botão flutuante WhatsApp -->
-  <a href="https://wa.me/5579998306276" class="whatsapp-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-  </a>
 </body>
 </html>
