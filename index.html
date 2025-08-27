@@ -6,13 +6,33 @@
   <title>Bright Dental Cad - Envio de Casos</title>
   <style>
     body { margin: 0; font-family: Arial, sans-serif; background: #f2f1ec; color: #333; }
-    header { background: #004725; color: #fff; padding: 20px; text-align: center; }
-    nav { margin-top: 10px; }
-    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    section { padding: 40px 20px; text-align: center; max-width: 900px; margin: auto; }
+    header { background: #004725; color: #fff; padding: 20px; text-align: center; position: relative; }
     h1, h2 { margin-bottom: 20px; }
     p { margin-bottom: 20px; font-size: 18px; }
+    section { padding: 40px 20px; text-align: center; max-width: 900px; margin: auto; }
+
+    /* Menu */
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+    }
+    nav a:hover { text-decoration: underline; }
+
+    /* Botão hambúrguer */
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
 
     /* Botões padrão */
     .btn {
@@ -53,13 +73,42 @@
     }
 
     footer { background: #222; color: #ccc; text-align: center; padding: 20px; margin-top: 40px; }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: #004725;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+      }
+      nav.show {
+        display: flex;
+      }
+      nav a {
+        margin: 10px 0;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Bright Dental Cad</h1>
     <p>Soluções em Prótese Digital com Exocad</p>
-    <nav>
+
+    <!-- Botão menu (hambúrguer) -->
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+    <!-- Navegação -->
+    <nav id="menu">
       <a href="#formulario">Enviar Caso</a>
       <a href="#precos">Tabela de Preços</a>
       <a href="#contato">Contato</a>
@@ -110,5 +159,11 @@
   <footer>
     <p>© 2025 Bright Dental Cad - Todos os direitos reservados.</p>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("show");
+    }
+  </script>
 </body>
 </html>
