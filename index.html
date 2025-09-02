@@ -6,8 +6,9 @@
   <title>Bright Dental Cad - Envio de Casos</title>
   <style>
     body { margin: 0; font-family: Arial, sans-serif; background: #f2f1ec; color: #333; }
-    header { background: #004725; color: #fff; padding: 20px; text-align: center; position: relative; }
-    header h1 { margin: 0; }
+    header { background: #004725; color: #fff; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 100; }
+    header h1 { margin: 0; font-size: 2.2rem; font-weight: bold; }
+    header p { font-size: 1.2rem; margin-top: 8px; color: #ddd; }
     nav { margin-top: 10px; }
     nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
     nav a:hover { text-decoration: underline; }
@@ -36,21 +37,33 @@
     section { padding: 40px 20px; text-align: center; max-width: 900px; margin: auto; }
     h1, h2 { margin-bottom: 20px; }
     p { margin-bottom: 20px; font-size: 18px; }
+
+    /* Botões */
     .btn {
-      display: inline-block; margin: 20px; padding: 12px 24px;
-      background: #004725; color: #fff; text-decoration: none; border-radius: 8px;
+      display: inline-block; margin: 20px; padding: 14px 28px;
+      background: #004725; color: #fff; text-decoration: none; border-radius: 50px;
+      font-size: 16px; transition: all 0.3s ease;
     }
-    .btn:hover { background: #006d37; }
-    footer { background: #222; color: #ccc; text-align: center; padding: 20px; margin-top: 40px; }
+    .btn:hover { background: #006d37; transform: scale(1.05); }
+
+    /* Rodapé */
+    footer { background: #004725; color: #fff; text-align: center; padding: 20px; margin-top: 40px; font-size: 14px; }
 
     /* Botão flutuante "Fale Conosco" */
     .contact-float {
       position: fixed; bottom: 20px; right: 20px;
       background-color: #25d366; color: white; font-weight: bold;
-      padding: 12px 18px; border-radius: 30px; box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-      cursor: pointer; z-index: 1000; border: none;
+      padding: 14px 24px; border-radius: 50px; box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      cursor: pointer; z-index: 1000; border: none; font-size: 16px;
+      animation: pulse 1.5s infinite;
     }
     .contact-float:hover { background: #1ebe5d; }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
 
     /* Caixinha do chat */
     #chat-box {
@@ -75,6 +88,51 @@
       cursor: pointer; font-weight: bold;
     }
     #chat-box button:hover { background: #1ebe5d; }
+
+    /* Modal (fundo escuro) */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    /* Conteúdo do modal */
+    .modal-content {
+      background: #f2f1ec;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 800px;
+      text-align: center;
+      border: 3px solid #004725;
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 12px;
+      max-height: 70vh;
+      object-fit: contain;
+    }
+
+    /* Botão fechar (X) */
+    .close {
+      color: #333;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: red;
+    }
   </style>
 </head>
 <body>
@@ -114,72 +172,19 @@
   </section>
 
   <!-- Botão da Tabela -->
-<section id="precos">
-  <h2>Tabela de Preços</h2>
-  <p>Clique no botão abaixo para visualizar a tabela:</p>
-  <button class="btn" onclick="openModal()">📄 Ver Tabela de Preços</button>
-</section>
+  <section id="precos">
+    <h2>Tabela de Preços</h2>
+    <p>Clique no botão abaixo para visualizar a tabela:</p>
+    <button class="btn" onclick="openModal()">📄 Ver Tabela de Preços</button>
+  </section>
 
-<!-- Modal (Pop-up) -->
-<div id="priceModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img src="tabela-precos.png.png" alt="Tabela de Preços" />
+  <!-- Modal (Pop-up) -->
+  <div id="priceModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img src="tabela-precos.png" alt="Tabela de Preços" />
+    </div>
   </div>
-</div>
-
-<style>
-/* Modal (fundo escuro) */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.7);
-}
-
-/* Conteúdo do modal */
-.modal-content {
-  background: #fff;
-  margin: 5% auto;
-  padding: 20px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 800px;
-  text-align: center;
-}
-
-.modal-content img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-/* Botão fechar (X) */
-.close {
-  color: #333;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close:hover {
-  color: red;
-}
-</style>
-
-<script>
-function openModal() {
-  document.getElementById("priceModal").style.display = "block";
-}
-function closeModal() {
-  document.getElementById("priceModal").style.display = "none";
-}
-</script>
 
   <!-- Contato -->
   <section id="contato">
@@ -222,6 +227,12 @@ function closeModal() {
     }
     function toggleMenu() {
       document.getElementById("nav-links").classList.toggle("active");
+    }
+    function openModal() {
+      document.getElementById("priceModal").style.display = "block";
+    }
+    function closeModal() {
+      document.getElementById("priceModal").style.display = "none";
     }
   </script>
 </body>
