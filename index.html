@@ -132,6 +132,39 @@
     }
     .close:hover { color: red; }
 
+    /* Galeria Futurista */
+    .gallery-container {
+      position: relative;
+      max-width: 1000px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+    .gallery-slide {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .gallery-slide img {
+      width: 100%;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+    .gallery-dots {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .active-dot { background-color: #004725; }
+
     /* Responsividade extra */
     @media (max-width: 480px) {
       .card p { font-size: 14px; }
@@ -155,6 +188,40 @@
       </div>
     </nav>
   </header>
+
+  <!-- Descrição institucional -->
+  <section>
+    <h2>Sobre a Bright Dental Cad</h2>
+    <p>Fundada em 2025, a Bright Dental Cad nasceu com o propósito de trazer inovação e precisão
+       para o universo da prótese digital. Nosso compromisso é unir tecnologia de ponta e
+       excelência técnica, entregando soluções que transformam sorrisos e ampliam resultados
+       clínicos.</p>
+  </section>
+
+  <!-- Galeria de Portfólio -->
+  <section>
+    <h2>Portfólio de Trabalhos</h2>
+    <div class="gallery-container">
+      <div class="gallery-slide" id="gallerySlide">
+        <img src="portfolio1.jpg" alt="Trabalho 1" onclick="openImage(this.src)">
+        <img src="portfolio2.jpg" alt="Trabalho 2" onclick="openImage(this.src)">
+        <img src="portfolio3.jpg" alt="Trabalho 3" onclick="openImage(this.src)">
+      </div>
+    </div>
+    <div class="gallery-dots">
+      <span class="dot active-dot" onclick="currentSlide(0)"></span>
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+    </div>
+  </section>
+
+  <!-- Modal da galeria -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('imageModal')">&times;</span>
+      <img id="modalImage" src="" alt="Imagem Ampliada">
+    </div>
+  </div>
 
   <!-- Cards principais -->
   <section id="materiais">
@@ -220,6 +287,34 @@
 
   <!-- Script -->
   <script>
+    let slideIndex = 0;
+    const slide = document.getElementById("gallerySlide");
+    const dots = document.getElementsByClassName("dot");
+
+    function showSlide(index) {
+      slide.style.transform = `translateX(${-index * 100}%)`;
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active-dot");
+      }
+      dots[index].classList.add("active-dot");
+      slideIndex = index;
+    }
+
+    function currentSlide(index) {
+      showSlide(index);
+    }
+
+    function autoSlide() {
+      slideIndex = (slideIndex + 1) % dots.length;
+      showSlide(slideIndex);
+    }
+    setInterval(autoSlide, 4000);
+
+    function openImage(src) {
+      document.getElementById("modalImage").src = src;
+      openModal("imageModal");
+    }
+
     function toggleChat() {
       const chat = document.getElementById("chat-box");
       chat.style.display = chat.style.display === "flex" ? "none" : "flex";
@@ -230,7 +325,7 @@
         alert("Digite uma mensagem antes de enviar!");
         return;
       }
-      const phone = "5579998306276"; // seu número com DDI
+      const phone = "5579998306276";
       const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
       window.open(url, "_blank");
     }
