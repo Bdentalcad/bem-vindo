@@ -19,15 +19,8 @@
       font-size: 26px; cursor: pointer; color: white;
     }
 
-    /* Menu mobile */
-    .nav-links {
-      display: flex; justify-content: center; flex-wrap: wrap;
-    }
-    .nav-links.active {
-      display: block; text-align: center;
-      background: #004725; padding: 10px 0;
-    }
-
+    .nav-links { display: flex; justify-content: center; flex-wrap: wrap; }
+    .nav-links.active { display: block; text-align: center; background: #004725; padding: 10px 0; }
     @media (max-width: 768px) {
       .nav-links { display: none; flex-direction: column; }
       .menu-toggle { display: block; }
@@ -38,18 +31,16 @@
     h1, h2 { margin-bottom: 20px; }
     p { margin-bottom: 20px; font-size: 18px; }
 
-    /* Botões */
     .btn {
       display: inline-block; margin: 20px; padding: 14px 28px;
       background: #004725; color: #fff; text-decoration: none; border-radius: 50px;
-      font-size: 16px; transition: all 0.3s ease;
+      font-size: 16px; transition: all 0.3s ease; cursor: pointer;
     }
     .btn:hover { background: #006d37; transform: scale(1.05); }
 
-    /* Rodapé */
     footer { background: #004725; color: #fff; text-align: center; padding: 20px; margin-top: 40px; font-size: 14px; }
 
-    /* Botão flutuante "Fale Conosco" */
+    /* Botão flutuante */
     .contact-float {
       position: fixed; bottom: 20px; right: 20px;
       background-color: #25d366; color: white; font-weight: bold;
@@ -65,7 +56,6 @@
       100% { transform: scale(1); }
     }
 
-    /* Caixinha do chat */
     #chat-box {
       position: fixed; bottom: 80px; right: 20px;
       width: 280px; background: white; border-radius: 10px;
@@ -73,77 +63,34 @@
       display: none; flex-direction: column;
       z-index: 1000;
     }
-    .chat-header {
-      background: #004725; color: white; padding: 10px;
-      border-radius: 10px 10px 0 0; font-weight: bold;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    #chat-message {
-      border: none; resize: none; padding: 10px;
-      height: 80px; outline: none; font-size: 14px;
-    }
-    #chat-box button {
-      background: #25d366; color: white;
-      border: none; padding: 10px; border-radius: 0 0 10px 10px;
-      cursor: pointer; font-weight: bold;
-    }
+    .chat-header { background: #004725; color: white; padding: 10px; border-radius: 10px 10px 0 0; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+    #chat-message { border: none; resize: none; padding: 10px; height: 80px; outline: none; font-size: 14px; }
+    #chat-box button { background: #25d366; color: white; border: none; padding: 10px; border-radius: 0 0 10px 10px; cursor: pointer; font-weight: bold; }
     #chat-box button:hover { background: #1ebe5d; }
 
-    /* Modal (fundo escuro) */
+    /* Modal genérico */
     .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
+      display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+      width: 100%; height: 100%; overflow: auto;
       background-color: rgba(0,0,0,0.7);
     }
-
-    /* Conteúdo do modal */
     .modal-content {
-      background: #f2f1ec;
-      margin: 5% auto;
-      padding: 20px;
-      border-radius: 16px;
-      width: 90%;
-      max-width: 800px;
-      text-align: center;
+      background: #f2f1ec; margin: 5% auto; padding: 20px;
+      border-radius: 16px; width: 90%; max-width: 800px; text-align: center;
       border: 3px solid #004725;
     }
-
-    .modal-content img {
-      width: 100%;
-      border-radius: 12px;
-      max-height: 70vh;
-      object-fit: contain;
+    .modal-content img, .modal-content iframe {
+      width: 100%; border-radius: 12px; max-height: 70vh;
     }
-
-    /* Botão fechar (X) */
-    .close {
-      color: #333;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover {
-      color: red;
-    }
+    .close { color: #333; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+    .close:hover { color: red; }
   </style>
 </head>
 <body>
   <header>
     <h1>Bright Dental Cad</h1>
     <p>Soluções em Prótese Digital com Exocad</p>
-
-    <!-- Botão hamburguer -->
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-    <!-- Menu -->
     <nav>
       <div class="nav-links" id="nav-links">
         <a href="#sobre">Sobre</a>
@@ -154,7 +101,6 @@
     </nav>
   </header>
 
-  <!-- Sobre -->
   <section id="sobre">
     <h2>Sobre Nós</h2>
     <p>
@@ -163,33 +109,37 @@
     </p>
   </section>
 
-  <!-- Formulário -->
+  <!-- Formulário em Modal -->
   <section id="formulario">
     <h2>Envie seu caso</h2>
     <p>Clique abaixo para preencher o formulário e enviar seus arquivos (.stl, .ply).</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdG2OR_22S-3Gg7-M8GATWwsse43At0wcZ7K1lHWTvTOckqVA/viewform?usp=sf_link"
-       target="_blank" class="btn">📤 Enviar Caso</a>
+    <button class="btn" onclick="openModal('formModal')">📤 Enviar Caso</button>
   </section>
 
-  <!-- Botão da Tabela -->
+  <div id="formModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('formModal')">&times;</span>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdG2OR_22S-3Gg7-M8GATWwsse43At0wcZ7K1lHWTvTOckqVA/viewform?embedded=true"
+              width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+    </div>
+  </div>
+
+  <!-- Tabela de preços -->
   <section id="precos">
     <h2>Tabela de Preços</h2>
     <p>Clique no botão abaixo para visualizar a tabela:</p>
-    <button class="btn" onclick="openModal()">📄 Ver Tabela de Preços</button>
+    <button class="btn" onclick="openModal('priceModal')">📄 Ver Tabela de Preços</button>
   </section>
 
-  <!-- Modal (Pop-up) -->
   <div id="priceModal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
+      <span class="close" onclick="closeModal('priceModal')">&times;</span>
       <img src="tabela-precos.png.png" alt="Tabela de Preços" />
     </div>
   </div>
 
-  <!-- Contato -->
   <section id="contato">
     <h2>Contato</h2>
-    <p>Entre em contato para mais informações:</p>
     <p>📧 <a href="mailto:b.dentalcad@gmail.com">b.dentalcad@gmail.com</a></p>
     <p>📱 <a href="tel:+5579998306276">(79) 99830-6276</a></p>
     <a href="https://www.instagram.com/bright.dentalcad" target="_blank" class="btn">📷 Instagram</a>
@@ -199,17 +149,13 @@
     <p>© 2025 Bright Dental Cad - Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Botão flutuante -->
   <button class="contact-float" onclick="toggleChat()">💬 Fale Conosco</button>
-
-  <!-- Caixa de chat -->
   <div id="chat-box">
     <div class="chat-header">Bright Dental Cad <span onclick="toggleChat()" style="cursor:pointer;">✖</span></div>
     <textarea id="chat-message" placeholder="Digite sua mensagem..."></textarea>
     <button onclick="sendMessage()">Enviar</button>
   </div>
 
-  <!-- Script -->
   <script>
     function toggleChat() {
       const chat = document.getElementById("chat-box");
@@ -217,22 +163,19 @@
     }
     function sendMessage() {
       const message = document.getElementById("chat-message").value;
-      if (message.trim() === "") {
-        alert("Digite uma mensagem antes de enviar!");
-        return;
-      }
-      const phone = "5579998306276"; // seu número com DDI
+      if (message.trim() === "") { alert("Digite uma mensagem antes de enviar!"); return; }
+      const phone = "5579998306276";
       const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
       window.open(url, "_blank");
     }
     function toggleMenu() {
       document.getElementById("nav-links").classList.toggle("active");
     }
-    function openModal() {
-      document.getElementById("priceModal").style.display = "block";
+    function openModal(id) {
+      document.getElementById(id).style.display = "block";
     }
-    function closeModal() {
-      document.getElementById("priceModal").style.display = "none";
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
     }
   </script>
 </body>
