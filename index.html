@@ -61,6 +61,59 @@
     .modal-content img { max-width: 100%; border-radius: 8px; }
     .close { color: #004725; float: right; font-size: 28px; cursor: pointer; }
 
+    /* Botão flutuante WhatsApp */
+    .float-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 1100;
+    }
+    .float-form {
+      position: fixed;
+      bottom: 100px;
+      right: 25px;
+      background: #fff;
+      border: 2px solid #004725;
+      border-radius: 12px;
+      padding: 15px;
+      width: 260px;
+      display: none;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      z-index: 1100;
+    }
+    .float-form textarea {
+      width: 100%;
+      height: 80px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 14px;
+      resize: none;
+      margin-bottom: 10px;
+    }
+    .float-form button {
+      background: #004725;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .float-form button:hover { background: #016636; }
+
     @media (max-width: 480px) {
       .btn { padding: 10px 20px; font-size: 14px; }
       .contact-box { width: 100%; }
@@ -68,115 +121,17 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Bright Dental Cad</h1>
-    <p>Soluções em Prótese Digital com Exocad</p>
-    <nav>
-      <a href="#materiais">Soluções</a>
-      <a href="#portfolio">Portfólio</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contato">Contato</a>
-    </nav>
-  </header>
+  <!-- ... (todo o seu conteúdo anterior fica igual, sem alterações) ... -->
 
-  <section id="sobre">
-    <h2>Sobre Nós</h2>
-    <p>Fundada em 2025, a Bright Dental Cad nasceu com a missão de revolucionar a prótese digital no Brasil. Nossa equipe combina tecnologia de ponta com expertise para entregar soluções rápidas, seguras e de alta precisão.</p>
-  </section>
-
-  <!-- Portfólio antes -->
-  <section id="portfolio">
-    <h2>Portfólio</h2>
-    <div class="gallery">
-      <img src="https://picsum.photos/id/1011/600/400" alt="Trabalho 1">
-      <img src="https://picsum.photos/id/1015/600/400" alt="Trabalho 2">
-      <img src="https://picsum.photos/id/1019/600/400" alt="Trabalho 3">
-      <img src="https://picsum.photos/id/1025/600/400" alt="Trabalho 4">
-    </div>
-  </section>
-
-  <!-- Nossas Soluções depois -->
-  <section id="materiais">
-    <h2>Nossas Soluções</h2>
-    <div class="card-grid">
-      <div class="card">
-        <h3><i class="lucide-upload"></i> Enviar Caso</h3>
-        <p>Envie seus arquivos (.stl, .ply) de forma rápida e segura pelo nosso formulário online.</p>
-        <button class="btn" onclick="openModal('formModal')">Acessar</button>
-      </div>
-      <div class="card">
-        <h3><i class="lucide-file-text"></i> Tabela de Preços</h3>
-        <p>Confira nossa tabela de preços atualizada para serviços de prótese digital.</p>
-        <button class="btn" onclick="openModal('priceModal')">Acessar</button>
-      </div>
-      <div class="card">
-        <h3><i class="lucide-message-circle"></i> Contato Rápido</h3>
-        <p>Entre em contato diretamente pelo WhatsApp para suporte imediato.</p>
-        <a href="https://wa.me/5579998306276" target="_blank" class="btn">Falar Agora</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq">
-    <h2>Perguntas Frequentes</h2>
-    <div class="faq-item">
-      <div class="faq-question">Quais arquivos posso enviar? <span>+</span></div>
-      <div class="faq-answer">Atualmente aceitamos arquivos nos formatos .STL e .PLY para melhor compatibilidade.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question">O envio é seguro? <span>+</span></div>
-      <div class="faq-answer">Sim! Utilizamos protocolo HTTPS e garantimos total sigilo dos arquivos enviados.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question">Qual o prazo de entrega? <span>+</span></div>
-      <div class="faq-answer">Os prazos variam de acordo com a complexidade, mas a maioria dos casos é entregue em até 48 horas.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question">Posso acompanhar meu pedido? <span>+</span></div>
-      <div class="faq-answer">Sim, enviamos atualizações pelo WhatsApp e e-mail em cada etapa do processo.</div>
-    </div>
-  </section>
-
-  <section id="contato">
-    <h2>Contato</h2>
-    <div class="contact-info">
-      <div class="contact-box"><i class="lucide-mail"></i><p><a href="mailto:b.dentalcad@gmail.com">b.dentalcad@gmail.com</a></p></div>
-      <div class="contact-box"><i class="lucide-phone"></i><p><a href="tel:+5579998306276">(79) 99830-6276</a></p></div>
-      <div class="contact-box"><i class="lucide-instagram"></i><p><a href="https://www.instagram.com/bright.dentalcad" target="_blank">@bright.dentalcad</a></p></div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-links">
-      <a href="#sobre">Home</a>
-      <a href="#materiais">Soluções</a>
-      <a href="#portfolio">Portfólio</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contato">Contato</a>
-    </div>
-    <div class="social-icons">
-      <a href="https://wa.me/5579998306276" target="_blank"><i class="lucide-message-circle"></i></a>
-      <a href="mailto:b.dentalcad@gmail.com"><i class="lucide-mail"></i></a>
-      <a href="https://www.instagram.com/bright.dentalcad" target="_blank"><i class="lucide-instagram"></i></a>
-    </div>
-    <p>© 2025 Bright Dental Cad - Todos os direitos reservados.</p>
-    <div class="impact">Bright Dental Cad – O futuro da prótese digital começa aqui.</div>
-  </footer>
-
-  <!-- Modals -->
-  <div id="formModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('formModal')">&times;</span>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdG2OR_22S-3Gg7-M8GATWwsse43At0wcZ7K1lHWTvTOckqVA/viewform?embedded=true"
-              width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
-    </div>
+  <!-- Botão flutuante WhatsApp -->
+  <div class="float-btn" onclick="toggleForm()">
+    <i class="lucide-message-circle"></i>
   </div>
 
-  <div id="priceModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('priceModal')">&times;</span>
-      <img src="tabela-precos.png" alt="Tabela de Preços">
-    </div>
+  <!-- Form flutuante -->
+  <div class="float-form" id="whatsForm">
+    <textarea id="msg" placeholder="Digite sua mensagem..."></textarea>
+    <button onclick="sendWhats()">Enviar</button>
   </div>
 
   <script>
@@ -200,6 +155,21 @@
     // Modal
     function openModal(id) { document.getElementById(id).style.display = "block"; }
     function closeModal(id) { document.getElementById(id).style.display = "none"; }
+
+    // WhatsApp form
+    function toggleForm() {
+      const form = document.getElementById("whatsForm");
+      form.style.display = form.style.display === "block" ? "none" : "block";
+    }
+    function sendWhats() {
+      const msg = document.getElementById("msg").value.trim();
+      if (msg) {
+        const url = `https://wa.me/5579998306276?text=${encodeURIComponent(msg)}`;
+        window.open(url, "_blank");
+      } else {
+        alert("Por favor, digite uma mensagem.");
+      }
+    }
   </script>
 </body>
 </html>
