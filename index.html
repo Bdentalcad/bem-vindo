@@ -117,7 +117,24 @@
     }
     .chat-popup button:hover { background: #1ebd5a; }
   </style>
-</head>
+</head> 
+  <!-- Modal Enviar Caso -->
+<div id="formModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('formModal')">&times;</span>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdG2OR_22S-3Gg7-M8GATWwsse43At0wcZ7K1lHWTvTOckqVA/viewform?embedded=true"
+            width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+  </div>
+</div>
+
+<!-- Modal Tabela de Preços -->
+<div id="priceModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('priceModal')">&times;</span>
+    <img src="tabela-precos.png.png" alt="Tabela de Preços">
+  </div>
+</div>
+  
 <body>
   <header>
     <h1>Bright Dental Cad</h1>
