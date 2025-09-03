@@ -61,13 +61,14 @@
     .modal-content img { max-width: 100%; border-radius: 8px; }
     .close { color: #004725; float: right; font-size: 28px; cursor: pointer; }
 
-    /* Botão flutuante WhatsApp */
-    .float-btn {
+    /* Botão Flutuante WhatsApp */
+    .whatsapp-btn {
       position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background: #25d366;
-      color: white;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: #fff;
+      border: none;
       border-radius: 50%;
       width: 60px;
       height: 60px;
@@ -79,59 +80,63 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       z-index: 1100;
     }
-    .float-form {
+
+    /* Formulário flutuante */
+    .whatsapp-form {
       position: fixed;
-      bottom: 100px;
-      right: 25px;
+      bottom: 90px;
+      right: 20px;
       background: #fff;
       border: 2px solid #004725;
       border-radius: 12px;
       padding: 15px;
-      width: 260px;
+      width: 280px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       display: none;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
       z-index: 1100;
     }
-    .float-form textarea {
+    .whatsapp-form input, .whatsapp-form textarea {
       width: 100%;
-      height: 80px;
+      padding: 10px;
+      margin-bottom: 10px;
       border: 1px solid #ccc;
       border-radius: 8px;
-      padding: 8px;
       font-size: 14px;
-      resize: none;
-      margin-bottom: 10px;
     }
-    .float-form button {
+    .whatsapp-form button {
+      width: 100%;
+      padding: 12px;
       background: #004725;
       color: #fff;
       border: none;
       border-radius: 8px;
-      padding: 10px;
-      width: 100%;
-      cursor: pointer;
       font-weight: bold;
+      cursor: pointer;
     }
-    .float-form button:hover { background: #016636; }
+    .whatsapp-form button:hover {
+      background: #016636;
+    }
 
     @media (max-width: 480px) {
       .btn { padding: 10px 20px; font-size: 14px; }
       .contact-box { width: 100%; }
+      .whatsapp-form { width: 90%; right: 5%; }
     }
   </style>
 </head>
 <body>
-  <!-- ... (todo o seu conteúdo anterior fica igual, sem alterações) ... -->
+  <!-- ... cabeçalho, seções e rodapé iguais ao seu código ... -->
 
-  <!-- Botão flutuante WhatsApp -->
-  <div class="float-btn" onclick="toggleForm()">
+  <!-- Botão Flutuante WhatsApp -->
+  <button class="whatsapp-btn" onclick="toggleWhatsAppForm()">
     <i class="lucide-message-circle"></i>
-  </div>
+  </button>
 
-  <!-- Form flutuante -->
-  <div class="float-form" id="whatsForm">
-    <textarea id="msg" placeholder="Digite sua mensagem..."></textarea>
-    <button onclick="sendWhats()">Enviar</button>
+  <!-- Formulário Flutuante WhatsApp -->
+  <div class="whatsapp-form" id="whatsappForm">
+    <input type="text" id="nome" placeholder="Seu nome">
+    <textarea id="mensagem" rows="3" placeholder="Digite sua mensagem"></textarea>
+    <button onclick="enviarWhatsApp()">Enviar</button>
   </div>
 
   <script>
@@ -156,19 +161,19 @@
     function openModal(id) { document.getElementById(id).style.display = "block"; }
     function closeModal(id) { document.getElementById(id).style.display = "none"; }
 
-    // WhatsApp form
-    function toggleForm() {
-      const form = document.getElementById("whatsForm");
+    // WhatsApp Form
+    function toggleWhatsAppForm() {
+      const form = document.getElementById("whatsappForm");
       form.style.display = form.style.display === "block" ? "none" : "block";
     }
-    function sendWhats() {
-      const msg = document.getElementById("msg").value.trim();
-      if (msg) {
-        const url = `https://wa.me/5579998306276?text=${encodeURIComponent(msg)}`;
-        window.open(url, "_blank");
-      } else {
-        alert("Por favor, digite uma mensagem.");
-      }
+
+    function enviarWhatsApp() {
+      const nome = document.getElementById("nome").value;
+      const mensagem = document.getElementById("mensagem").value;
+      const numero = "5579998306276"; // seu número
+      const texto = `Olá, meu nome é ${nome}. ${mensagem}`;
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+      window.open(url, "_blank");
     }
   </script>
 </body>
