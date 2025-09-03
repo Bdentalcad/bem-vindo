@@ -61,64 +61,63 @@
     .modal-content img { max-width: 100%; border-radius: 8px; }
     .close { color: #004725; float: right; font-size: 28px; cursor: pointer; }
 
-    /* Botão flutuante */
-    .chat-button {
+    /* Botão flutuante WhatsApp */
+    .float-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
       background: #25D366;
       color: #fff;
       border: none;
-      border-radius: 50px;
-      padding: 14px 22px;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      cursor: pointer;
-      z-index: 1100;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 8px;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 1100;
     }
-    .chat-button:hover { background: #1ebe5d; }
 
     /* Formulário flutuante */
-    .chat-form {
+    .chat-popup {
+      display: none;
       position: fixed;
-      bottom: 80px;
+      bottom: 90px;
       right: 20px;
-      background: #fff;
       border: 2px solid #25D366;
       border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-      width: 280px;
+      background: #fff;
       z-index: 1200;
+      padding: 15px;
+      width: 280px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-    .chat-form input, .chat-form textarea {
+    .chat-popup textarea {
       width: 100%;
-      padding: 8px;
+      height: 80px;
+      padding: 10px;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
+      resize: none;
     }
-    .chat-form button {
+    .chat-popup button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
       background: #25D366;
       color: #fff;
       border: none;
-      padding: 10px;
-      border-radius: 6px;
-      cursor: pointer;
+      border-radius: 8px;
       font-weight: bold;
+      cursor: pointer;
     }
-    .chat-form button:hover { background: #1ebe5d; }
+    .chat-popup button:hover { background: #1ebd5a; }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
   <header>
     <h1>Bright Dental Cad</h1>
     <p>Soluções em Prótese Digital com Exocad</p>
@@ -130,26 +129,30 @@
     </nav>
   </header>
 
-  <!-- (todo seu conteúdo anterior permanece igual...) -->
+  <!-- Conteúdo original continua -->
+  <section id="sobre">...</section>
+  <section id="portfolio">...</section>
+  <section id="materiais">...</section>
+  <section id="faq">...</section>
+  <section id="contato">...</section>
+  <footer>...</footer>
 
   <!-- Botão flutuante -->
-  <button class="chat-button" onclick="toggleChatForm()">
-    <i class="lucide-message-circle"></i> Fale Conosco
+  <button class="float-btn" onclick="toggleChat()">
+    <i class="lucide-message-circle"></i>
   </button>
 
-  <!-- Formulário flutuante -->
-  <div class="chat-form" id="chatForm">
-    <input type="text" id="nome" placeholder="Seu nome">
-    <textarea id="mensagem" rows="3" placeholder="Digite sua mensagem"></textarea>
-    <button onclick="enviarWhatsApp()">Enviar</button>
+  <!-- Mini-formulário -->
+  <div class="chat-popup" id="chatForm">
+    <textarea id="msg" placeholder="Digite sua mensagem..."></textarea>
+    <button onclick="sendWhatsApp()">Enviar</button>
   </div>
 
   <script>
     // FAQ
     document.querySelectorAll(".faq-question").forEach(q => {
       q.addEventListener("click", () => {
-        const item = q.parentElement;
-        item.classList.toggle("active");
+        q.parentElement.classList.toggle("active");
       });
     });
 
@@ -166,22 +169,19 @@
     function openModal(id) { document.getElementById(id).style.display = "block"; }
     function closeModal(id) { document.getElementById(id).style.display = "none"; }
 
-    // Chat form
-    function toggleChatForm() {
-      const form = document.getElementById("chatForm");
-      form.style.display = form.style.display === "flex" ? "none" : "flex";
+    // Chat popup
+    function toggleChat() {
+      const chat = document.getElementById("chatForm");
+      chat.style.display = chat.style.display === "block" ? "none" : "block";
     }
 
-    function enviarWhatsApp() {
-      const nome = document.getElementById("nome").value;
-      const mensagem = document.getElementById("mensagem").value;
-      if (!mensagem.trim()) {
-        alert("Por favor, digite sua mensagem.");
-        return;
+    function sendWhatsApp() {
+      const msg = document.getElementById("msg").value;
+      if(msg.trim() !== "") {
+        const phone = "5579998306276";
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+        window.open(url, "_blank");
       }
-      const texto = `Olá, meu nome é ${nome || "visitante"}: ${mensagem}`;
-      const url = `https://wa.me/5579998306276?text=${encodeURIComponent(texto)}`;
-      window.open(url, "_blank");
     }
   </script>
 </body>
