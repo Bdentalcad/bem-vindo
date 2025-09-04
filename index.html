@@ -138,6 +138,34 @@
     margin: 0 auto;
   }
 }
+    
+/* Botão hamburguer */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background: #004725;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  nav.show {
+    display: flex;
+  }
+  .hamburger {
+    display: block;
+  }
+}
 
   </style>
 </head> 
@@ -160,15 +188,20 @@
   
 <body>
   <header>
-    <h1>Bright Dental Cad</h1>
-    <p>Soluções em Prótese Digital com Exocad</p>
-    <nav>
-      <a href="#materiais">Soluções</a>
-      <a href="#portfolio">Portfólio</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contato">Contato</a>
-    </nav>
-  </header>
+  <h1>Bright Dental Cad</h1>
+  <p>Soluções em Prótese Digital com Exocad</p>
+
+  <!-- Botão Hamburguer -->
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+
+  <nav id="menu">
+    <a href="#materiais">Soluções</a>
+    <a href="#portfolio">Portfólio</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
 
   <!-- Sobre -->
   <section id="sobre">
@@ -335,6 +368,11 @@
         window.open(url, "_blank");
       }
     }
+
+    function toggleMenu() {
+  document.getElementById("menu").classList.toggle("show");
+}
+
   </script>
 </body>
 </html>
