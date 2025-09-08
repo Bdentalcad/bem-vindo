@@ -211,6 +211,19 @@ header {
   border: none;
 }
 
+    /* Modal da Galeria */
+#galleryModal .modal-content {
+  max-width: 800px;     /* limite no PC */
+  width: 90%;
+  margin: 5% auto;
+}
+
+#galleryModal .modal-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
 
   </style>
 </head> 
@@ -262,9 +275,9 @@ header {
  <section id="portfolio">
   <h2>Trabalhos Entregues</h2>
   <div class="gallery">
-    <img src="caso 2.png" alt="Caso 2" onclick="abrirModal(this)">
-    <img src="caso1.png" alt="Caso 1" onclick="abrirModal(this)">
-    <img src="caso3.png" alt="Caso 3" onclick="abrirModal(this)">
+<img src="caso 2.png" onclick="openGallery(this.src)">
+<img src="caso1.png" onclick="openGallery(this.src)">
+<img src="caso3.png" onclick="openGallery(this.src)">
   </div>
 </section>
 
@@ -425,6 +438,10 @@ header {
     function toggleMenu() {
   document.getElementById("menu").classList.toggle("show");
 }
+    function openGallery(src) {
+  document.getElementById("galleryImage").src = src;
+  document.getElementById("galleryModal").style.display = "block";
+}
 
     // Modal da galeria
 function abrirModal(img) {
@@ -436,6 +453,14 @@ function abrirModal(img) {
 function fecharModal() {
   document.getElementById("modal").style.display = "none";
 }
+
+    <!-- Modal da Galeria -->
+<div id="galleryModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('galleryModal')">&times;</span>
+    <img id="galleryImage" src="" alt="Imagem ampliada">
+  </div>
+</div>
 
   </script>
 </body>
