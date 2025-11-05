@@ -95,13 +95,16 @@
     }
 
     /* No celular ocupa a tela quase toda */
-    @media (max-width: 767px) {
-      #priceModal .modal-content img {
-        max-width: 95%;
-        width: 100%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
+   @media (min-width: 768px) {
+  #priceModal .modal-content img {
+    max-width: 95vw; /* ocupa quase toda a largura da tela */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  .hamburger { display: none; }
+}
+
       }
       /* Mobile menu behaviour */
       nav { display: none; flex-direction: column; background: #004725; padding: 15px; border-radius: 8px; margin-top: 10px; }
