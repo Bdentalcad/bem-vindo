@@ -6,162 +6,134 @@
   <title>Bright Dental Cad - Futuro da Prótese Digital</title>
   <link href="https://unpkg.com/lucide-static@latest/font/lucide.css" rel="stylesheet">
   <style>
-/* BASE */
-body { 
-  margin: 0; 
-  font-family: Arial, sans-serif; 
-  background: #0a0a0a; 
-  color: #eaeaea; 
+    body { margin: 0; font-family: Arial, sans-serif; background: #f2f1ec; color: #222; }
+    header {  background: #000000; color: #ffffff; padding: 30px 20px; text-align: center; position: relative; }
+    header h1 { margin: 0; font-size: 2.5em; }
+    header p { color: #9aa; margin-top: 10px; font-size: 1.2em; }
+    nav { margin-top: 15px; }
+
+    nav a { color: #00f5c4; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { color: #ffffff; text-decoration: underline; }
+
+    section { padding: 60px 20px; max-width: 1100px; margin: auto; text-align: center; opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    section.visible { opacity: 1; transform: translateY(0); }
+    h2 { margin-bottom: 25px; font-size: 2em; color: #00f5c4; }
+
+    /* Cards */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+    .card { background: #111; border: 1px solid rgba(0,255,170,0.2); border-radius: 16px; padding: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .card h3 { color: #00f5c4; margin-bottom: 12px; }
+    .card p { color: #ccc; font-size: 15px; margin-bottom: 16px; }
+    .btn { padding: 12px 24px; background: #00f5c4; color: #000; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+    .btn:hover { background: #00cfa3; }
+
+    /* Galeria */
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 15px; }
+    .gallery img { width: 100%; border-radius: 12px; cursor: pointer; transition: transform 0.3s ease; }
+    .gallery img:hover { transform: scale(1.05); }
+
+    /* Modal de imagens (galeria) */
+    #galleryModal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); }
+    #galleryModal .modal-content { max-width: 800px; width: 90%; margin: 5% auto; text-align:center; }
+    #galleryModal img { width: 100%; height: auto; border-radius: 12px; display: block; margin: 0 auto; }
+    #galleryModal .close-gallery { position: absolute; top: 18px; right: 24px; color: white; font-size: 36px; font-weight: bold; cursor: pointer; }
+
+    /* FAQ */
+    .faq-item { background: #fff; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; overflow: hidden; text-align: left; }
+    .faq-question { padding: 15px; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; align-items: center; color: #004725; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 15px; color: #444; }
+    .faq-item.active .faq-answer { max-height: 200px; padding: 15px; }
+
+    /* Contato */
+    #contato { text-align: center; }
+    .contact-info { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; margin-top: 20px; }
+    .contact-box { background: #fff; border: 2px solid #004725; padding: 20px; border-radius: 16px; width: 230px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .contact-box:hover { transform: translateY(-5px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
+    .contact-box i { font-size: 26px; color: #004725; margin-bottom: 10px; display: block; }
+    .contact-box a { text-decoration: none; color: #004725; font-weight: bold; }
+
+    /* Rodapé */
+    footer { background: #004725; color: #fff; padding: 40px 20px; margin-top: 50px; text-align: center; }
+    .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+    .footer-links a { color: #fff; text-decoration: none; }
+    .footer-links a:hover { text-decoration: underline; }
+    .social-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
+    .social-icons a { color: #fff; font-size: 22px; }
+    .impact { margin-top: 20px; font-size: 1.3em; font-weight: bold; }
+
+    /* Modal padrão (forms & price) */
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
+    .modal-content { background: #fff; color: #222; margin: 5% auto; padding: 20px; border-radius: 12px; width: 90%; max-width: 900px; text-align: center; }
+    .modal-content img { max-width: 100%; border-radius: 8px; }
+    .close { color: #004725; float: right; font-size: 28px; cursor: pointer; }
+
+    /* Botão flutuante WhatsApp */
+    .float-btn {
+      position: fixed; bottom: 20px; right: 20px; background: #25D366; color: #fff; border: none; border-radius: 40px;
+      padding: 12px 20px; display: flex; align-items: center; font-size: 16px; font-weight: bold; cursor: pointer; gap: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1100;
+    }
+    .float-btn i { font-size: 20px; }
+
+    /* Formulário flutuante */
+    .chat-popup { display: none; position: fixed; bottom: 90px; right: 20px; border: 2px solid #25D366; border-radius: 12px; background: #fff; z-index: 1200; padding: 15px; width: 280px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .chat-popup textarea { width: 100%; height: 80px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; resize: none; }
+    .chat-popup button { margin-top: 10px; width: 100%; padding: 10px; background: #25D366; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+    .chat-popup button:hover { background: #1ebd5a; }
+
+    /* Tamanho da tabela no computador */
+    @media (min-width: 768px) {
+      #priceModal .modal-content img {
+        max-width: 600px;
+        width: 50%;
+        height: auto;
+        display: flex;
+        margin: 0 auto;
+      }
+      .hamburger { display: none; }
+    }
+
+    /* No celular ocupa a tela quase toda */
+    @media (max-width: 767px) {
+      #priceModal .modal-content img {
+        max-width: 95%;
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+      /* Mobile menu behaviour */
+      nav { display: none; flex-direction: column; background: #004725; padding: 15px; border-radius: 8px; margin-top: 10px; }
+      nav.show { display: flex; }
+      .hamburger { display: block; }
+    }
+
+    /* Hambúrguer (posicionado à direita) */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 22px;
+    }
+
+    /* Form modal iframe full-height on mobile */
+    #formModal .modal-content iframe { width: 100%; min-height: 80vh; border: none; }
+
+    #sobre p {
+  font-size: 1.7em;
+  line-height: 1.8;
+  max-width: 1000px;
+  margin: 0 auto;
+  color: #333;
 }
 
-/* HEADER */
-header { 
-  background: #000000; 
-  color: #ffffff; 
-  padding: 30px 20px; 
-  text-align: center; 
-  position: relative; 
-  border-bottom: 1px solid rgba(0,255,170,0.2);
-}
 
-header h1 { margin: 0; font-size: 2.5em; }
-header p { margin-top: 10px; font-size: 1.2em; color: #9aa; }
-
-/* MENU */
-nav a { 
-  color: #00f5c4; 
-  margin: 0 15px; 
-  text-decoration: none; 
-  font-weight: bold; 
-}
-nav a:hover { color: #ffffff; }
-
-/* SECTIONS */
-section { 
-  padding: 60px 20px; 
-  max-width: 1100px; 
-  margin: auto; 
-  text-align: center; 
-  opacity: 0; 
-  transform: translateY(30px); 
-  transition: all 0.8s ease-out; 
-}
-section.visible { opacity: 1; transform: translateY(0); }
-
-h2 { color: #00f5c4; }
-
-/* CARDS */
-.card { 
-  background: rgba(255,255,255,0.03); 
-  border: 1px solid rgba(0,255,170,0.2); 
-  border-radius: 16px; 
-  padding: 25px; 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
-  transition: transform 0.3s ease, box-shadow 0.3s ease; 
-}
-.card:hover { 
-  transform: translateY(-6px); 
-  box-shadow: 0 0 20px rgba(0,255,170,0.2); 
-}
-.card h3 { color: #00f5c4; }
-.card p { color: #ccc; }
-
-/* BOTÃO */
-.btn { 
-  padding: 12px 24px; 
-  background: linear-gradient(135deg, #00f5c4, #00a97f); 
-  color: #000; 
-  border: none; 
-  border-radius: 8px; 
-  cursor: pointer; 
-  font-weight: bold; 
-}
-.btn:hover { 
-  box-shadow: 0 0 15px rgba(0,255,170,0.5); 
-}
-
-/* GALERIA */
-.gallery img { 
-  border-radius: 12px; 
-  transition: transform 0.3s ease; 
-}
-.gallery img:hover { 
-  transform: scale(1.05); 
-  box-shadow: 0 0 20px rgba(0,255,170,0.3); 
-}
-
-/* FAQ */
-.faq-item { 
-  background: rgba(255,255,255,0.02); 
-  border: 1px solid rgba(0,255,170,0.15); 
-}
-.faq-question { 
-  color: #00f5c4; 
-}
-.faq-answer { 
-  color: #ccc; 
-}
-
-/* CONTATO */
-.contact-box { 
-  background: rgba(255,255,255,0.03); 
-  border: 1px solid rgba(0,255,170,0.3); 
-}
-.contact-box i { color: #00f5c4; }
-.contact-box a { color: #00f5c4; }
-
-/* FOOTER */
-footer { 
-  background: #000; 
-  border-top: 1px solid rgba(0,255,170,0.2); 
-}
-.footer-links a { color: #ccc; }
-.footer-links a:hover { color: #00f5c4; }
-
-.social-icons a { color: #ccc; }
-
-.impact { 
-  color: #00f5c4; 
-}
-
-/* MODAL */
-.modal { background: rgba(0,0,0,0.9); }
-.modal-content { 
-  background: #111; 
-  color: #fff; 
-}
-.close { color: #00f5c4; }
-
-/* WHATSAPP */
-.float-btn {
-  background: linear-gradient(135deg, #00f5c4, #00a97f);
-  color: #000;
-}
-
-/* CHAT */
-.chat-popup { 
-  background: #111; 
-  border: 1px solid rgba(0,255,170,0.3); 
-}
-.chat-popup textarea { 
-  background: #000; 
-  color: #fff; 
-  border: 1px solid #333; 
-}
-.chat-popup button { 
-  background: #00f5c4; 
-  color: #000; 
-}
-.chat-popup button:hover { 
-  background: #00cfa3; 
-}
-
-/* MOBILE MENU */
-@media (max-width: 767px) {
-  nav { 
-    background: #000; 
-  }
-}
   </style>
 </head>
 <body>
