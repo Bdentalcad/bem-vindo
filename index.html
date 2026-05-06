@@ -1,4 +1,12 @@
-<style>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bright Dental Cad - Futuro da Prótese Digital</title>
+  <link href="https://unpkg.com/lucide-static@latest/font/lucide.css" rel="stylesheet">
+  <style>
+    <style>
 
 /* BASE */
 body { 
@@ -158,3 +166,185 @@ footer {
 }
 
 </style>
+
+  </style>
+</head>
+<body>
+  <!-- Modal Enviar Caso -->
+  <div id="formModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('formModal')">&times;</span>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdG2OR_22S-3Gg7-M8GATWwsse43At0wcZ7K1lHWTvTOckqVA/viewform?embedded=true"
+              style="width:100%; min-height:80vh; border:none; border-radius:8px;" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Modal Tabela de Preços -->
+  <div id="priceModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('priceModal')">&times;</span>
+      <!-- Substitua o src pela sua imagem real da tabela -->
+      <img src="tabela-precos.png.png" alt="Tabela de Preços">
+    </div>
+  </div>
+
+  <header>
+    <h1>Bright Dental Cad</h1>
+    <p>Soluções em Prótese Digital com Exocad</p>
+
+    <!-- Botão Hamburguer -->
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+
+    <nav id="menu">
+      <a href="#materiais">Soluções</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <!-- Sobre -->
+  <section id="sobre">
+    <h2>Sobre Nós</h2>
+    <p style="font-size:1.4em; line-height:1.6;">A Bright Dental CAD surgiu em 2025 com um objetivo claro: entregar planejamento digital confiável, rápido e previsível para dentistas e laboratórios que atuam na odontologia digital.</p>
+<p style="font-size:1.4em; line-height:1.6;">Unimos domínio técnico em CAD, padronização de processos e foco em fluxo para desenvolver próteses com precisão anatômica, estética consistente e resistência funcional.</p>
+<p style="font-size:1.4em; line-height:1.6;">Trabalhamos como parceiros estratégicos, não como prestadores pontuais — ajudando clínicas e laboratórios a ganhar eficiência, reduzir retrabalho e manter previsibilidade nos resultados clínicos.</p>
+  </section>
+
+  <section id="portfolio">
+    <h2>Trabalhos Entregues</h2>
+    <div class="gallery">
+      <!-- Use nomes dos seus arquivos ou URLs reais -->
+      <img src="Caso 2.png" alt="Caso 1" onclick="openGallery(this.src)">
+      <img src="8.png" alt="Caso 2" onclick="openGallery(this.src)">
+      <img src="caso1.png" alt="Caso 3" onclick="openGallery(this.src)">
+      <!-- pode adicionar mais imgs -->
+    </div>
+  </section>
+
+  <!-- Modal da galeria (ampliar imagens sem ocupar toda a página) -->
+  <div id="galleryModal">
+    <div class="modal-content">
+      <span class="close-gallery" onclick="closeGalleryModal()">&times;</span>
+      <img id="galleryImage" src="" alt="Ampliada">
+    </div>
+  </div>
+
+  <!-- Soluções -->
+  <section id="materiais">
+    <h2>Nossas Soluções</h2>
+    <div class="card-grid">
+      <div class="card"><h3>Facetas</h3><p>Solução estética moderna e personalizada.</p></div>
+      <div class="card"><h3>Coroas</h3><p>Resistência e naturalidade com alto padrão de qualidade.</p></div>
+      <div class="card"><h3>Próteses Fixas</h3><p>Durabilidade e conforto para pacientes exigentes.</p></div>
+    </div>
+  </section>
+
+  <!-- Cards principais -->
+  <section id="materiais">
+    <h2>Nossas Soluções</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>📤 Enviar Caso</h3>
+        <p>Envie seus arquivos (.stl, .ply) de forma rápida e segura pelo nosso formulário online.</p>
+        <button class="btn" onclick="openModal('formModal')">Acessar</button>
+      </div>
+      
+      <div class="card">
+        <h3>💬 Contato Rápido</h3>
+        <p>Fale diretamente conosco pelo WhatsApp ou e-mail para tirar suas dúvidas.</p>
+        <button class="btn" onclick="toggleChat()">Acessar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2>Perguntas Frequentes</h2>
+    <div class="faq-item"><div class="faq-question">O que exatamente vocês fazem?</div><div class="faq-answer">Recebemos os arquivos ou modelos digitais do caso, realizamos todo o planejamento em CAD e entregamos o arquivo final ou o dente pronto para impressão/fresagem.</div></div>
+    <div class="faq-item"><div class="faq-question">Vocês atendem em todo o Brasil?</div><div class="faq-answer">Atendemos clínicas e laboratórios no Brasil e no exterior, já trabalhamos com outros países como Portugual e Argentina.</div></div>
+    <div class="faq-item"><div class="faq-question">Quais tipos de prótese vocês trabalham?</div><div class="faq-answer">Coroas, facetas, inlays, onlays, protocolo, PPR, coroa sobre implante, lentes de contato dentais e placas miorrelaxantes.</div></div>
+    <div class="faq-item"><div class="faq-question">Qual o prazo médio de entrega?</div><div class="faq-answer">A maioria dos trabalhos é entregue em até 6 horas, nos casos avulsos.</div></div>
+     <div class="faq-item"><div class="faq-question">Preciso enviar fotos junto com os arquivos?</div><div class="faq-answer">Sim, recomendamos sempre enviar imagens do caso (fotografias intraorais, escaneamento facial ou RX) para que possamos planejar com maior precisão.</div></div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato">
+    <h2>Entre em Contato</h2>
+    <div class="contact-info">
+      <div class="contact-box"><i class="lucide-phone"></i><a href="https://api.whatsapp.com/send/?phone=5579998784168">(79) 99878-4168</a></div>
+      <div class="contact-box"><i class="lucide-mail"></i><a href="mailto:b.dentalcad@gmail.com" title="Enviar e-mail para b.dentalcad@gmail.com">b.dentalcad@gmail.com</a></div>
+      <div class="contact-box"><i class="lucide-instagram"></i><a href="https://www.instagram.com/bright.dentalcad">@brightdentalcad</a></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links"><a href="#sobre">Home</a><a href="#materiais">Soluções</a><a href="#portfolio">Portfólio</a><a href="#contato">Contato</a></div>
+    <div class="social-icons"><a href="#"><i class="lucide-instagram"></i></a><a href="#"><i class="lucide-mail"></i></a><a href="#"><i class="lucide-phone"></i></a></div>
+    <p class="impact">Bright Dental Cad – Planejamento digital pensado para escala, consistência e resultado clínico.</p>
+  </footer>
+
+  <!-- Botão flutuante -->
+  <button class="float-btn" onclick="toggleChat()"><i class="lucide-message-circle"></i> Fale Conosco</button>
+
+  <!-- Mini-formulário -->
+  <div class="chat-popup" id="chatForm">
+    <textarea id="msg" placeholder="Digite sua mensagem..."></textarea>
+    <button onclick="sendWhatsApp(Olá, ostaria de saber ver a tabela de preços)">Enviar</button>
+  </div>
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll(".faq-question").forEach(q => {
+      q.addEventListener("click", () => q.parentElement.classList.toggle("active"));
+    });
+
+    // Scroll animations
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add("visible"); });
+    }, { threshold: 0.2 });
+    sections.forEach(sec => observer.observe(sec));
+
+    // Modal open/close (form & price)
+    function openModal(id) { document.getElementById(id).style.display = "block"; }
+    function closeModal(id) { document.getElementById(id).style.display = "none"; }
+
+    // Chat popup
+    function toggleChat() {
+      const chat = document.getElementById("chatForm");
+      chat.style.display = chat.style.display === "block" ? "none" : "block";
+    }
+
+    function sendWhatsApp() {
+      const msg = document.getElementById("msg").value;
+      if (msg.trim() !== "") {
+        const phone = "5579998784168";
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+        window.open(url, "_blank");
+      }
+    }
+
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("show");
+    }
+
+    // Galeria: abrir imagem ampliada
+    function openGallery(src) {
+      document.getElementById("galleryImage").src = src;
+      document.getElementById("galleryModal").style.display = "block";
+    }
+    function closeGalleryModal() {
+      document.getElementById("galleryModal").style.display = "none";
+      document.getElementById("galleryImage").src = "";
+    }
+
+    // Fecha o modal da galeria ao clicar fora da imagem
+    document.getElementById("galleryModal").addEventListener("click", function(e){
+      if (e.target.id === "galleryModal") closeGalleryModal();
+    });
+
+  </script>
+</body>
+</html>
