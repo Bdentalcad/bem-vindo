@@ -13,350 +13,203 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-  font-family: Arial, sans-serif;
-  background: #0b0f14;
-  color: #e6f1f1;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #0f141a, #07090c);
+  color: #eaeaea;
 }
 
 /* HEADER */
 header {
-  background: linear-gradient(135deg,#0b0f14,#00c2a8);
-  color:#fff;
-  padding:40px 20px;
-  text-align:center;
-  position:relative;
+  background: linear-gradient(180deg, #050607, #0a0f14);
+  color: #fff;
+  padding: 50px 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,255,170,0.08);
 }
 
-header h1 { font-size:2.6em; }
-header p { margin-top:10px; color:#d9fefe; }
+header h1 {
+  font-size: 2.8em;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #00f5c4, #00a97f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-nav { margin-top:15px; }
+header p {
+  color: #8fa3a3;
+  margin-top: 10px;
+}
 
+/* MENU */
 nav a {
-  color:#00c2a8;
-  margin:0 12px;
-  text-decoration:none;
-  font-weight:bold;
+  color: #00f5c4;
+  margin: 0 15px;
+  text-decoration: none;
+  transition: 0.3s;
+  position: relative;
 }
 
-nav a:hover { color:#fff; }
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: #00f5c4;
+  transition: 0.3s;
+}
 
-/* SECTION */
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a:hover {
+  color: #ffffff;
+}
+
+/* SECTIONS */
 section {
-  padding:60px 20px;
-  max-width:1100px;
-  margin:auto;
-  text-align:center;
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: auto;
 }
 
 h2 {
-  color:#00c2a8;
-  margin-bottom:25px;
+  color: #00f5c4;
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+h2::after {
+  content: "";
+  width: 50px;
+  height: 3px;
+  background: #00f5c4;
+  display: block;
+  margin: 10px auto 0;
 }
 
 /* CARDS */
-.card-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-}
-
 .card {
-  background:#121821;
-  border:1px solid rgba(0,194,168,0.2);
-  border-radius:16px;
-  padding:25px;
-  transition:.3s;
+  background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(0,255,170,0.1);
+  border-radius: 18px;
+  padding: 25px;
+  backdrop-filter: blur(8px);
+  transition: 0.35s ease;
 }
 
 .card:hover {
-  transform:translateY(-6px);
-  box-shadow:0 0 20px rgba(0,194,168,0.3);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 0 30px rgba(0,255,170,0.15);
+  border: 1px solid rgba(0,255,170,0.25);
 }
 
-.card h3 { color:#00c2a8; }
+.card h3 {
+  color: #00f5c4;
+  margin-bottom: 10px;
+}
 
-/* BOTÃO */
+/* BOTÕES */
 .btn {
-  padding:12px 22px;
-  background:linear-gradient(135deg,#00c2a8,#009e8e);
-  border:none;
-  border-radius:8px;
-  color:#000;
-  cursor:pointer;
-  font-weight:bold;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #00f5c4, #00a97f);
+  border: none;
+  border-radius: 10px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.btn:hover { box-shadow:0 0 15px rgba(0,194,168,.5); }
+.btn:hover {
+  box-shadow: 0 0 20px rgba(0,255,170,0.5);
+  transform: scale(1.05);
+}
 
 /* GALERIA */
-.gallery {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:15px;
-}
-
 .gallery img {
-  width:100%;
-  border-radius:12px;
-  transition:.3s;
+  border-radius: 14px;
+  transition: 0.4s;
 }
 
 .gallery img:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 20px rgba(0,194,168,0.3);
+  transform: scale(1.06);
+  box-shadow: 0 0 25px rgba(0,255,170,0.25);
 }
 
 /* FAQ */
 .faq-item {
-  background:#121821;
-  border:1px solid rgba(0,194,168,0.2);
-  border-radius:10px;
-  margin-bottom:10px;
-  text-align:left;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(0,255,170,0.08);
+  border-radius: 12px;
+  margin-bottom: 12px;
 }
 
 .faq-question {
-  padding:15px;
-  cursor:pointer;
-  color:#00c2a8;
-  font-weight:bold;
+  color: #00f5c4;
+  padding: 15px;
 }
 
 .faq-answer {
-  max-height:0;
-  overflow:hidden;
-  transition:.4s;
-  padding:0 15px;
-}
-
-.faq-item.active .faq-answer {
-  max-height:200px;
-  padding:15px;
+  color: #b5c7c7;
 }
 
 /* CONTATO */
-.contact-info {
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:20px;
-}
-
 .contact-box {
-  background:#121821;
-  border:1px solid rgba(0,194,168,0.3);
-  padding:20px;
-  border-radius:16px;
-  width:220px;
-  transition:.3s;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(0,255,170,0.15);
+  border-radius: 16px;
+  transition: 0.3s;
 }
 
 .contact-box:hover {
-  transform:translateY(-5px);
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0,255,170,0.2);
 }
 
 .contact-box i {
-  font-size:24px;
-  color:#00c2a8;
+  color: #00f5c4;
 }
 
 .contact-box a {
-  color:#00c2a8;
-  text-decoration:none;
-  font-weight:bold;
+  color: #00f5c4;
 }
 
 /* FOOTER */
 footer {
-  background:#000;
-  color:#fff;
-  padding:40px 20px;
-  text-align:center;
-}
-
-.footer-links a {
-  color:#00c2a8;
-  margin:0 10px;
+  background: #030405;
+  border-top: 1px solid rgba(0,255,170,0.08);
 }
 
 .impact {
-  margin-top:15px;
-  color:#00c2a8;
+  color: #00f5c4;
 }
 
-/* WHATSAPP */
+/* BOTÃO WHATSAPP */
 .float-btn {
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:linear-gradient(135deg,#00c2a8,#009e8e);
-  color:#000;
-  border:none;
-  padding:12px 18px;
-  border-radius:30px;
-  font-weight:bold;
-  cursor:pointer;
+  background: linear-gradient(135deg, #00f5c4, #00a97f);
+  color: #000;
+  box-shadow: 0 0 15px rgba(0,255,170,0.3);
 }
 
+.float-btn:hover {
+  transform: scale(1.05);
+}
+
+/* CHAT */
 .chat-popup {
-  display:none;
-  position:fixed;
-  bottom:90px;
-  right:20px;
-  background:#121821;
-  border:1px solid #00c2a8;
-  padding:15px;
-  border-radius:12px;
-  width:260px;
+  background: #0d1117;
+  border: 1px solid rgba(0,255,170,0.2);
 }
 
 .chat-popup textarea {
-  width:100%;
-  height:70px;
-  background:#000;
-  color:#fff;
-  border:1px solid #333;
-  border-radius:8px;
-  padding:10px;
+  background: #050607;
+  color: #fff;
+  border: 1px solid #222;
 }
-
-.chat-popup button {
-  margin-top:10px;
-  width:100%;
-  padding:10px;
-  background:#00c2a8;
-  border:none;
-  border-radius:8px;
-  font-weight:bold;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  nav{display:none;flex-direction:column;background:#0b0f14;padding:15px;}
-  nav.show{display:flex;}
-  .hamburger{display:block;}
-}
-
-.hamburger{
-  display:none;
-  position:absolute;
-  right:20px;
-  top:25px;
-  font-size:28px;
-  background:none;
-  border:none;
-  color:#fff;
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-<h1>Bright Dental Cad</h1>
-<p>Planejamento digital com identidade e precisão</p>
-
-<button class="hamburger" onclick="toggleMenu()">☰</button>
-
-<nav id="menu">
-<a href="#materiais">Soluções</a>
-<a href="#portfolio">Portfólio</a>
-<a href="#faq">FAQ</a>
-<a href="#contato">Contato</a>
-</nav>
-</header>
-
-<section id="portfolio">
-<h2>Trabalhos</h2>
-<div class="gallery">
-<img src="Caso 2.png">
-<img src="8.png">
-<img src="caso1.png">
-</div>
-</section>
-
-<section id="materiais">
-<h2>Soluções</h2>
-<div class="card-grid">
-
-<div class="card">
-<h3>Enviar Caso</h3>
-<p>Envie arquivos rapidamente.</p>
-<button class="btn">Acessar</button>
-</div>
-
-<div class="card">
-<h3>Contato</h3>
-<p>Fale direto pelo WhatsApp.</p>
-<button class="btn" onclick="toggleChat()">Acessar</button>
-</div>
-
-</div>
-</section>
-
-<section id="faq">
-<h2>FAQ</h2>
-
-<div class="faq-item">
-<div class="faq-question">O que vocês fazem?</div>
-<div class="faq-answer">Planejamento digital completo.</div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question">Prazo?</div>
-<div class="faq-answer">Até 6 horas.</div>
-</div>
-
-</section>
-
-<section id="contato">
-<h2>Contato</h2>
-
-<div class="contact-info">
-<div class="contact-box">
-<i class="lucide-phone"></i>
-<a href="https://wa.me/5579998784168">(79) 99878-4168</a>
-</div>
-</div>
-
-</section>
-
-<footer>
-<p class="impact">Bright Dental CAD • Tecnologia aplicada à estética</p>
-</footer>
-
-<button class="float-btn" onclick="toggleChat()">WhatsApp</button>
-
-<div class="chat-popup" id="chatForm">
-<textarea id="msg"></textarea>
-<button onclick="sendWhatsApp()">Enviar</button>
-</div>
-
-<script>
-
-document.querySelectorAll(".faq-question").forEach(q=>{
-q.addEventListener("click",()=>q.parentElement.classList.toggle("active"))
-})
-
-function toggleMenu(){
-document.getElementById("menu").classList.toggle("show")
-}
-
-function toggleChat(){
-let c=document.getElementById("chatForm")
-c.style.display=c.style.display==="block"?"none":"block"
-}
-
-function sendWhatsApp(){
-let msg=document.getElementById("msg").value
-if(msg){
-window.open(`https://wa.me/5579998784168?text=${encodeURIComponent(msg)}`)
-}
-}
-
-</script>
-
 </body>
 </html>
